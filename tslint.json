@@ -14,6 +14,8 @@
       "always",
       "ignore-interfaces"
     ],
+    "no-trailing-whitespace": false,
+    "object-curly-spacing": false,
     "space-before-function-paren": [
       true,
       "asyncArrow"

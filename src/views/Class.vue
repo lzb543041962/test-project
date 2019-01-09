@@ -66,6 +66,29 @@
       <p>在上面的例子中，我们必须在Octopus类里定义一个只读成员 name和一个参数为 theName的构造函数，并且立刻将 theName的值赋给 name，这种情况经常会遇到。 参数属性可以方便地让我们在一个地方定义并初始化一个成员。</p>
       <p>参数属性通过给构造函数参数前面添加一个访问限定符来声明。 使用 private限定一个参数属性会声明并初始化一个私有成员；对于 public和 protected来说也是一样。</p>
     </div>
+    <div>
+      <h2>存取器</h2>
+      <p>privateEmployee(PrivateEmployee)
+        <span>{{privateEmployee.fullName}}</span>
+      </p>
+      <p>我们可以修改一下密码，来验证一下存取器是否是工作的。当密码不对时，会提示我们没有权限去修改员工。</p>
+      <p>存取器要求你将编译器设置为输出ECMAScript 5或更高。 不支持降级到ECMAScript 3。 其次，只带有 get不带有 set的存取器自动被推断为 readonly。</p>
+    </div>
+    <div>
+      <h2>抽象类</h2>
+      <p>抽象类做为其它派生类的基类使用。 它们一般不会直接被实例化。 不同于接口，抽象类可以包含成员的实现细节。 abstract关键字是用于定义抽象类和在抽象类内部定义抽象方法。（见AbstractAnimal类）</p>
+      <p>抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。 抽象方法的语法与接口方法相似。 两者都是定义方法签名但不包含方法体。 然而，抽象方法必须包含 abstract关键字并且可以包含访问修饰符。</p>
+      <p>department(AccountingDepartment extends Department)
+        <span>{{department}}</span>
+      </p>
+    </div>
+    <div>
+      <h2>把类当做接口使用</h2>
+      <p>类定义会创建两个东西：类的实例类型和一个构造函数。 因为类可以创建出类型，所以你能够在允许使用接口的地方使用类。</p>
+      <p>point3d(interface Point3d extends Point)
+        <span>{{point3d}}</span>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -152,6 +175,77 @@ class Octopus {
   // }
 }
 
+// 存取器
+let passcode = 'secret passcode'
+
+class PrivateEmployee {
+  private _fullName: string
+
+  get fullName(): string {
+    return this._fullName
+  }
+
+  set fullName(newName: string) {
+    if (passcode && passcode === 'secret passcode') {
+      this._fullName = newName
+    } else {
+      console.log('Error: Unauthorized update of employee!')
+    }
+  }
+}
+
+// 静态属性
+class Grid {
+  static origin = { x: 0, y: 0 }
+  calculateDistanceFromOrigin(point: {x: number; y: number}) {
+    let xDist = (point.x - Grid.origin.x)
+    let yDist = (point.y - Grid.origin.y)
+    return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale
+  }
+  constructor (public scale: number) { }
+}
+
+// 抽象类
+abstract class AbstractAnimal {
+  abstract makeSound(): void
+  move(): void {
+    console.log('roaming the earch...')
+  }
+}
+abstract class Department {
+  constructor(public name: string) {
+  }
+  printName(): void {
+    console.log('Department name: ' + this.name)
+  }
+  abstract printMeeting(): void // 必须在派生类中实现
+}
+class AccountingDepartment extends Department {
+  constructor() {
+    super('Accounting and Auditing') // 在派生类的构造函数中必须调用 super()
+  }
+  printMeeting(): void {
+    console.log('The Accounting Department meets each Monday at 10am.')
+  }
+  generateReports(): void {
+    console.log('Generating accounting reports...')
+  }
+}
+let department: Department // 允许创建一个对抽象类型的引用
+
+// 把类当做接口使用
+class Point {
+  x: number
+  y: number
+  constructor(x: number, y: number) {
+    this.x = x
+    this.y = y
+  }
+}
+interface Point3d extends Point {
+  z: number
+}
+
 @Component({})
 export default class ClassType extends Vue {
   // 简介
@@ -170,16 +264,46 @@ export default class ClassType extends Vue {
   john = new Person('John') // 修改Person类的构造函数为protected，会报错
   // readonly修饰符
   dad = new Octopus('Man with the 2 strong legs')
+  // 存取器
+  privateEmployee = new PrivateEmployee()
+  // 静态属性
+  grid1 = new Grid(1.0) // 1x scale
+  grid2 = new Grid(5.0) // 5x scale
+  // 抽象类
+  // department = new Department() // 错误: 不能创建一个抽象类的实例
+  department = new AccountingDepartment()
+  // 把类当做接口使用
+  point3d: Point3d = {x: 1, y: 2, z: 3}
+
   mounted () {
     // 简介
+    console.log('简介')
     this.greeter.greet()
     // private
+    console.log('private')
     this.privateGoat = this.rhino
     this.privateGoat = this.employee
     // protected
+    console.log('protected')
     console.log(this.howard.name)
     // readonly修饰符
+    console.log('readonly修饰符')
     this.dad.name = 'Man with the 3-piece suit'
+    // 存取器
+    console.log('存取器')
+    this.privateEmployee.fullName = 'Bob Smith'
+    if (this.privateEmployee.fullName) {
+      console.log(this.privateEmployee.fullName)
+    }
+    // 静态属性
+    console.log('静态属性')
+    console.log(this.grid1.calculateDistanceFromOrigin({x: 10, y: 10}))
+    console.log(this.grid2.calculateDistanceFromOrigin({x: 10, y: 10}))
+    // 抽象类
+    console.log('抽象类')
+    this.department.printName();
+    this.department.printMeeting();
+    this.department.generateReports(); // 错误: 方法在声明的抽象类中不存在（官网说报错，但例子里没有）
   }
 }
 </script>
