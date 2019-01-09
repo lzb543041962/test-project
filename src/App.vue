@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">简介与环境搭建</router-link> |
+      <router-link to="/baseType">基础类型</router-link> |
+      <router-link to="/interface">接口</router-link> |
+      <router-link to="/class">类</router-link> |
+      <router-link to="/function">函数</router-link>
     </div>
     <router-view/>
   </div>
@@ -21,6 +24,7 @@
   a {
     font-weight: bold;
     color: #2c3e50;
+    text-decoration: none;
     &.router-link-exact-active {
       color: #42b983;
     }

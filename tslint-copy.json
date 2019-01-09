@@ -9,6 +9,9 @@
     ]
   },
   "rules": {
+    "quotemark": [true, "single"],
+    "indent": [true, "spaces", 2],
+    "member-ordering": false,
     "semicolon": [
       false,
       "always",
@@ -18,13 +21,10 @@
       true,
       "asyncArrow"
     ],
-    "no-console": false,
-    "member-access": false,
-    "max-classes-per-file": [false, 1],
-    "quotemark": [true, "single"],
-    "indent": [true, "spaces", 2],
     "interface-name": false,
     "ordered-imports": false,
+    "typedef-whitespace": true,
+    "curly": true,
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": false
   }
