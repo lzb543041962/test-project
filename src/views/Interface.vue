@@ -149,7 +149,7 @@ export default class Interface extends Vue {
   margin: 0 auto;
 }
 .interface div {
-  width: 600px;
+  width: 800px;
   margin: 0 auto;
   text-align: left;
 }

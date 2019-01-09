@@ -314,7 +314,7 @@ export default class ClassType extends Vue {
 .baseType div {
   margin: 0 auto;
   text-align: left;
-  width: 600px;
+  width: 800px;
 }
 span {
   margin-left: 10px;
