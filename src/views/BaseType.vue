@@ -108,33 +108,33 @@ enum Color {
 @Component({})
 export default class BaseType extends Vue {
   // 布尔
-  public isDone: boolean = false
+  isDone: boolean = false
   // 数字
-  public decLiteral: number = 20
-  public hexLiteral: number = 0x14 // 16进制
-  public binaryLiteral: number = 0b10100 // 2进制
-  public octalLiteral: number = 0o24 // 8进制
+  decLiteral: number = 20
+  hexLiteral: number = 0x14 // 16进制
+  binaryLiteral: number = 0b10100 // 2进制
+  octalLiteral: number = 0o24 // 8进制
   // 字符串
-  public name: string = 'bob'
-  public sentence: string = `Hello, my name is ${this.name}.`
+  name: string = 'bob'
+  sentence: string = `Hello, my name is ${this.name}.`
   // 数组
-  public list: (number | string)[] = [1, '2s', 3]
-  public listGeneric: Array<number> = [1, 2, 3]
+  list: (number | string)[] = [1, '2s', 3]
+  listGeneric: Array<number> = [1, 2, 3]
   // 元组
-  public x: [string, number] = ['hello', 10]
+  x: [string, number] = ['hello', 10]
   // 枚举
-  public c: Color = Color.Green
-  public colorName: string = Color[2]
+  c: Color = Color.Green
+  colorName: string = Color[2]
   // any
-  public notSure: any = 4
+  notSure: any = 4
   // void、null、undefined、never
-  public unusable: void = undefined // 无意义
-  public num: number = 3
+  unusable: void = undefined // 无意义
+  num: number = 3
   // 类型判定
-  public someValue: any = 'this is a string'
-  public strLength: number = (<string>this.someValue).length
-  public someValueAs: any = 'this is a string(as)'
-  public strLengthAs: number = (this.someValueAs as string).length
+  someValue: any = 'this is a string'
+  strLength: number = (<string>this.someValue).length
+  someValueAs: any = 'this is a string(as)'
+  strLengthAs: number = (this.someValueAs as string).length
   
   tupleError() {
     this.x = [10, 'hello']
