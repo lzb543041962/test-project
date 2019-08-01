@@ -15,6 +15,12 @@
       <li><a>代码重构</a></li>
       <li><a>可读性</a></li>
     </ul>
+    <ul>
+      <li style="list-style: disc;list-style-type: disc;display: list-item">静态类型语言需要你在能够使用这个变量之前定义它的类型。而动态类型语言则不同。JavaScript中变量类型是被“隐去”的，而Java中则是显式声明的。</li>
+      <li style="list-style: disc;list-style-type: disc;display: list-item">通过配置tslint，可以让vscode智能提示报错信息</li>
+      <li style="list-style: disc;list-style-type: disc;display: list-item">场景例子：后端修改变量名，前端需要同步修改这个参数的变量名</li>
+      <li style="list-style: disc;list-style-type: disc;display: list-item">有了明确的代码类型声明而语义化的接口名类名，可以很大程度提高代码的可读性，替代部分注释</li>
+    </ul>
     <h3>不方便改造成Typescript项目的原因主要可能有</h3>
     <ul>
       <li>项目太小，没有必要</li>
