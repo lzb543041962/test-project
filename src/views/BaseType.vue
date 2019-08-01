@@ -105,11 +105,6 @@ enum Color {
   Blue
 }
 
-// 创建objcet
-declare function create(o: object | null): void
-create({prop: 0})
-create(null)
-
 @Component({})
 export default class BaseType extends Vue {
   // 布尔
