@@ -21,9 +21,9 @@ import Introduction from '@/components/Introduction.vue' // @ is an alias to /sr
 })
 export default class Home extends Vue {
   // data
-  @Provide() public obj: object = {}
-  @Provide() public msg: string = 'My typescript project!'
-  @Provide() public times: number = 0
+  private obj: object = {}
+  private msg: string = 'My typescript project!'
+  private times: number = 0
 
   // methods
   addTimes (a: number): number {
